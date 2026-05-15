@@ -1,4 +1,4 @@
-# Banana Script, a script engine with minimalist syntax similar to JavaScript, implemented in C99.
+# SJX Script, a script engine with minimalist syntax similar to JavaScript, implemented in C23.
 
 This article is openly licensed via [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
@@ -7,7 +7,7 @@ This article is openly licensed via [CC BY-NC-ND 4.0](https://creativecommons.or
 Project Address: <https://github.com/shajunxing/banana-script>
 
 ```
-Banana Script REPL environment. Copyright (C) 2024-2025 ShaJunXing
+SJX Script REPL environment. Copyright (C) 2024-2025 ShaJunXing
 Type '/?' for more information.
 
 > print({"foo":true,"bar":[null,false,{"baz":function(a){return function(b){return function(c){return a+b+c;};};}}]}?.bar[2]["baz"]("How ")("are ")("you?"));
