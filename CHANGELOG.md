@@ -1,6 +1,14 @@
+# 2026-06-04
+
+Version 2.0
+
+# 2025-12-19
+
 Improved `sleep` function, now will invoke callback at beginning and at end.
 
 Simplified standalone executables construction process.
+
+Improved `natural_compare` function, now english letters case-insensive.
 
 # 2025-11-25
 
@@ -92,7 +100,7 @@ Huge reconstruction, including bytecode, project structure, `try` `catch`, enhan
 
 # 2025-02-10
 
-After heavy code refactoring, from introducing token cache to using `js_value` instead of `js_value *` to reduce lots of memory allocation operation (structure assignment is about 10 times faster than memory allocation), to introducing bytecodes, performance vs Python reduced from dozen to about 5, now performance problems are mainly in hashmap operations such as `js_get_variable`. Maybe in the future variable access can be optimized to array operation.
+After heavy code refactoring, from introducing token cache to using `value` instead of `value *` to reduce lots of memory allocation operation (structure assignment is about 10 times faster than memory allocation), to introducing bytecodes, performance vs Python reduced from dozen to about 5, now performance problems are mainly in hashmap operations such as `js_get_variable`. Maybe in the future variable access can be optimized to array operation.
 
 # 2025-01-27
 
