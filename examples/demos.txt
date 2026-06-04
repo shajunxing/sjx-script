@@ -1,9 +1,0 @@
-// functional
-print({"foo":true,"bar":[null,false,{"baz":function(a){return function(b){return function(c){return a+b+c;};};}}]}?.bar[2]["baz"]("How ")("are ")("you?"));
-
-// chaining syntax
-[1, 100, 3, 10, 2]::map(tostring)::sort(natural_compare)::join("-")::tojson()::print();
-
-// regular expression
-print(format("${0}|${1}|${2}|${3}", ...match("Unknown-14886@noemail.invalid", "^([\\w\\.-]+)\\@([\\w-]+)\\.([a-zA-Z\\w]+)$")));
-
