@@ -1,8 +1,12 @@
 # SJX Script，纯C实现的类JS语法的极简引擎，Version 2.0
 
-下载地址 <https://github.com/shajunxing/sjx-script/releases> ，包含 windows 和 linux 可执行程序。
+## 设计目的
+
+缓解自己的强迫症，厌恶一切我认为不合理的东西。
 
 ## 使用方法
+
+从 <https://github.com/shajunxing/sjx-script/releases> 下载，包含 windows 和 linux 可执行程序。
 
 创建文本文件 hello.js ，内容为 `print("hello");` ，执行 `js hello.js` ，就能看到欢迎语。
 
