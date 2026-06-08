@@ -2,11 +2,21 @@
 
 下载地址 <https://github.com/shajunxing/sjx-script/releases> ，包含 windows 和 linux 可执行程序。
 
-创建文本文件 hello.js ，内容为 `let name = input("What's your name? "); print("Greetings", name);` ，执行 `js hello.js` ，输入名字并回车，就能看到欢迎语。
+## 使用方法
+
+创建文本文件 hello.js ，内容为 `print("hello");` ，执行 `js hello.js` ，就能看到欢迎语。
 
 源代码由多行语句组成，首行可以是 shebang 格式，即 `#!` 开头的，遵循 posix 约定。
 
 大部分语句以分号 `;` 结尾。
+
+如果不愿公开源代码，可将其编译，执行 `jsc hello.js` ，生成汇编文件 hello.asm.txt 和字节码文件 hello.bin.txt 。字节码文件可用 `jse hello.bin.txt` 执行。
+
+运行期错误信息也会泄露部分源代码信息。比如，创建文件 error.js ，内容为 `throw "boom";` ，执行 `js error.js` ，可观察到错误文件名和行号。执行 `jsc error.js` 和 `jse error.bin.txt` 同样也可观察到。现在打开 error.bin.txt ，删除其中的 `line mapping` 和 `file names` 两段，再次执行 `jse error.bin.txt` ，可发现文件名和行号不再显示。
+
+执行 `jsrepl` 可进入交互式环境，其中输入的语句会立即执行。另外也有内置命令，比如查看之前输入的历史、保存到磁盘等。
+
+![repl](REPL.png)
 
 ## 变量和值
 
@@ -54,7 +64,7 @@
 
 如果有多个串联的逻辑与表达式，那么当计算到第一个 `false` 之后的表达式不会执行。
 
-`== !=` 判断两个变量相等的规则是：
+`== !=` 判断规则是：
 
 - 如果类型不同，那么不等；
 - 如果都是 `null` ，那么相等；
@@ -183,6 +193,14 @@ foo();
 
 解决办法是，先把foo变量定义出来：
 
+```
+let foo;
+foo = function() {
+    foo();
+}
+foo();
+```
+
 闭包规则符合人类直觉。
 
 ## 垃圾回收
@@ -191,7 +209,7 @@ foo();
 
 如果存在循环引用，引用计数算法是无法处理的。比如 `let a = [], b = []; a[0] = b; b[0] = a;` ，可以 `a[0] = null;` 打破循环。再比如 `let a; let b = function() {}; a = function() {};` ，`a` 和 `b` 都存在对方的闭包里面，形成循环引用。
 
-引擎内置标记清除算法 `gc()` 函数，该函数同时释放所有缓存。标记清除算法是很耗时的，所以留给程序自行决定是否执行。一般而言，编码时候应该尽量避免循环引用。
+所以引擎也提供清除算法 `gc()` 函数供程序手动调用，该函数同时也释放所有缓存。标记清除算法是比较耗时的，一般而言，编码时候应该尽量避免循环引用。
 
 ## 内置函数库
 
