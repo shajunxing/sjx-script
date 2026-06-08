@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     default_locale();
     struct parser ps = {0};
     default_parse(&ps, argc, argv);
-    struct vm vm = {.bc = ps.bc};
+    struct vm vm = {.pbc = &(ps.bc), .pdbg = &(ps.dbg)};
     default_decl(&vm, argc, argv);
-    return default_run(&vm, &(ps.dbg));
+    return default_run(&vm);
 }
